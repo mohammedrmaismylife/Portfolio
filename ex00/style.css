@@ -1,12 +1,4 @@
-/* =========================================================
-   Personal Portfolio, style.css
-   Mobile-first: base styles target phones; media queries add
-   layout at 700px (tablet) and 1000px (desktop).
-   Theming: colours are CSS custom properties. JavaScript only
-   changes data-theme / data-accent on <html>.
-   ========================================================= */
 
-/* ---------- 1. Design tokens ---------- */
 :root {
     color-scheme: light;
 
