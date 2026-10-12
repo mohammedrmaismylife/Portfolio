@@ -1,20 +1,3 @@
-/* =========================================================
-   Personal Portfolio, script.js
-
-   EVENT LIFECYCLE (explained for the defense), using the theme button:
-
-   1. USER ACTION      The visitor clicks the "Dark mode" button.
-   2. EVENT FIRING     The browser creates a MouseEvent ("click") and
-                       dispatches it to the button, then bubbles it up
-                       through its ancestors (header -> body -> document).
-   3. JS CALLBACK      The function we registered with addEventListener
-                       ("click", handleThemeClick) runs and receives the event.
-   4. DOM/CSS MUTATION The callback sets data-theme="dark" on <html>.
-                       CSS rules like :root[data-theme="dark"] now match,
-                       the custom properties (--bg, --ink ...) change, and
-                       the browser re-calculates styles and repaints.
-                       We also update the button text and aria-pressed.
-   ========================================================= */
 
 "use strict";
 
@@ -22,9 +5,6 @@
   const root = document.documentElement;          // the <html> element
   const STORAGE_KEY = "portfolio-preferences";
 
-  /* ---------- Small helpers ---------- */
-
-  // localStorage can be blocked (private mode), so never let it crash the page.
   const loadPrefs = () => {
     try {
       return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {};
@@ -36,13 +16,11 @@
     try {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(prefs));
     } catch {
-      /* ignore: preferences just won't persist */
     }
   };
 
   const prefs = loadPrefs();
 
-  /* ---------- 1. Theme switcher (mandatory feature) ---------- */
   const themeButton = document.getElementById("theme-toggle");
   const themeLabel = document.getElementById("theme-toggle-label");
 
@@ -53,7 +31,6 @@
     themeLabel.textContent = isDark ? "Light mode" : "Dark mode";  // text mutation
   }
 
-  // Callback: runs every time the button is clicked (step 3)
   function handleThemeClick() {
     const next = root.getAttribute("data-theme") === "dark" ? "light" : "dark";
     applyTheme(next);
@@ -61,10 +38,8 @@
     savePrefs(prefs);
   }
 
-  // Register the listener: "when a click happens on this button, call that function"
   themeButton.addEventListener("click", handleThemeClick);
 
-  /* ---------- 2. Accent colour swatches ---------- */
   const swatches = document.querySelectorAll("[data-accent-choice]");
 
   function applyAccent(accent) {
@@ -83,12 +58,10 @@
     });
   });
 
-  /* ---------- Restore saved preferences, else follow the OS ---------- */
   const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
   applyTheme(prefs.theme || (prefersDark ? "dark" : "light"));
   applyAccent(prefs.accent || "teal");
 
-  /* ---------- 3. Mobile menu ---------- */
   const menuButton = document.getElementById("menu-toggle");
   const nav = document.getElementById("site-nav");
 
@@ -102,17 +75,14 @@
     setMenu(!nav.classList.contains("is-open"));
   });
 
-  // Close the menu after choosing a link (event delegation: one listener on <nav>)
   nav.addEventListener("click", (event) => {
     if (event.target.closest("a")) setMenu(false);
   });
 
-  // Close with the Escape key
   document.addEventListener("keydown", (event) => {
     if (event.key === "Escape") setMenu(false);
   });
 
-  /* ---------- 4. Highlight the nav link of the visible section ---------- */
   const navLinks = document.querySelectorAll(".nav-list a");
   const sections = document.querySelectorAll("main section[id]");
 
@@ -131,7 +101,6 @@
     sections.forEach((section) => observer.observe(section));
   }
 
-  /* ---------- 5. Contact form validation ---------- */
   const form = document.getElementById("contact-form");
   const status = document.getElementById("form-status");
   const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -151,8 +120,7 @@
   }
 
   const fields = [...form.querySelectorAll("input, textarea")];
-
-  // Validate when leaving a field; re-validate while typing only after an error was shown
+   
   fields.forEach((field) => {
     field.addEventListener("blur", () => validateField(field));
     field.addEventListener("input", () => {
@@ -173,12 +141,10 @@
       return;
     }
 
-    // No backend in this exercise: confirm to the user and reset the form.
     status.textContent = "Message sent. Thank you, I'll reply soon.";
     form.reset();
     fields.forEach((f) => f.removeAttribute("aria-invalid"));
   });
 
-  /* ---------- 6. Footer year ---------- */
   document.getElementById("year").textContent = new Date().getFullYear();
 })();
