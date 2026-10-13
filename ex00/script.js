@@ -4,7 +4,6 @@
   const root = document.documentElement;          // the <html> element
   const STORAGE_KEY = "portfolio-preferences";
 
-  /* ---------- Small helpers ---------- */
 
   // localStorage can be blocked (private mode), so never let it crash the page.
   const loadPrefs = () => {
