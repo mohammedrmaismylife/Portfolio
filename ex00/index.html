@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light" data-accent="teal">
+<html lang="en" data-theme="light">
 
 <head>
     <meta charset="UTF-8">
@@ -13,6 +13,7 @@
 <body>
     <a class="skip-link" href="#main">Skip to content</a>
 
+    <!-- ============ HEADER / NAVBAR ============ -->
     <header class="site-header">
         <div class="container header-inner">
             <a class="brand" href="#top" aria-label="Mohammed Khaled, back to top">&lt;MK/&gt;</a>
@@ -28,17 +29,8 @@
             </nav>
 
             <div class="controls">
-                <div class="swatches" role="group" aria-label="Accent colour">
-                    <button type="button" class="swatch" data-accent-choice="teal" aria-label="Teal accent"
-                        aria-pressed="true"></button>
-                    <button type="button" class="swatch" data-accent-choice="coral" aria-label="Coral accent"
-                        aria-pressed="false"></button>
-                    <button type="button" class="swatch" data-accent-choice="violet" aria-label="Violet accent"
-                        aria-pressed="false"></button>
-                    <button type="button" class="swatch" data-accent-choice="amber" aria-label="Amber accent"
-                        aria-pressed="false"></button>
-                </div>
 
+                <!-- Light / dark theme switcher (the mandatory JS feature) -->
                 <button type="button" id="theme-toggle" class="btn btn-ghost" aria-pressed="false">
                     <span id="theme-toggle-label">Dark mode</span>
                 </button>
@@ -52,21 +44,8 @@
     </header>
 
     <main id="main">
-        <section id="top" class="hero">
-            <div class="container">
-                <p class="hero-kicker">Junior web developer</p>
-                <h1>Hi, I'm Mohammed Khaled. I build clean, responsive websites by hand.</h1>
-                <p class="hero-lead">
-                    No frameworks, no templates: just HTML, CSS and JavaScript written line by line.
-                    Try the buttons in the top bar to change the theme of this page.
-                </p>
-                <div class="hero-actions">
-                    <a class="btn btn-primary" href="#projects">See my projects</a>
-                    <a class="btn btn-ghost" href="#contact">Get in touch</a>
-                </div>
-            </div>
-        </section>
-
+        <span id="top"></span>
+        <!-- ============ ABOUT ME ============ -->
         <section id="about" class="section">
             <div class="container about">
                 <figure class="about-photo">
@@ -86,10 +65,15 @@
                     <p>
                         Right now I'm improving my JavaScript and learning how to write code that other people can read.
                     </p>
+                    <div class="hero-actions">
+                        <a class="btn btn-primary" href="#projects">See my projects</a>
+                        <a class="btn btn-ghost" href="#contact">Get in touch</a>
+                    </div>
                 </div>
             </div>
         </section>
 
+        <!-- ============ SKILLS ============ -->
         <section id="skills" class="section section-alt">
             <div class="container">
                 <h2>Skills</h2>
@@ -129,6 +113,7 @@
             </div>
         </section>
 
+        <!-- ============ PROJECT SHOWCASE (Projects 00-03) ============ -->
         <section id="projects" class="section">
             <div class="container">
                 <h2>Project showcase</h2>
@@ -182,6 +167,7 @@
             </div>
         </section>
 
+        <!-- ============ HOBBIES ============ -->
         <section id="hobbies" class="section section-alt">
             <div class="container">
                 <h2>Hobbies</h2>
@@ -206,6 +192,7 @@
             </div>
         </section>
 
+        <!-- ============ CONTACT FORM ============ -->
         <section id="contact" class="section">
             <div class="container contact">
                 <div class="contact-intro">
@@ -236,6 +223,7 @@
         </section>
     </main>
 
+    <!-- ============ FOOTER ============ -->
     <footer class="site-footer">
         <div class="container footer-inner">
             <p>&copy; <span id="year">2026</span> Mohammed Khaled. Built by hand with HTML, CSS and JavaScript.</p>
